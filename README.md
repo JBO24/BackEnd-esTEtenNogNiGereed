@@ -19,3 +19,6 @@ And login with admin - admin. Check that JDBC URL is
 
 	jdbc:h2:mem:testdb
 	
+## Using Edamam API
+
+	https://developer.edamam.com/edamam-docs-recipe-api
