@@ -2,18 +2,21 @@ package be.ordina.boerenkostbe.boerenkost.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="recipe")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Recipe implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
+
     @Column
     private String label;
 
@@ -31,6 +34,12 @@ public class Recipe implements Serializable {
 
     @OneToMany(mappedBy = "recipe")
     private List<Ingredient> ingredients;
+
+    @JsonProperty("hits")
+    private void unpackNested(Map<String, Object> recipe) {
+        this.label = (String)recipe.get("recipe");
+        this.image = (String)recipe.get("image");
+    }
 
     public Long getId() {
         return id;

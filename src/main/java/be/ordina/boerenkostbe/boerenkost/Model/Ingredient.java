@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Ingredient implements Serializable {
     @Id
     @Column
+    @GeneratedValue
     private Long id;
 
     @Column
